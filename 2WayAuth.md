@@ -75,6 +75,11 @@
 
 0. 创建 `certs/2way` 目录，后续的操作都在此目录， docker 拷贝的cert 也从这个目录拷贝进去
 
+```
+mkdir -p certs/2way
+cd certs/2way
+```
+
 1. 创建根证书
 
 `openssl genrsa -out root2way.key 1024`
