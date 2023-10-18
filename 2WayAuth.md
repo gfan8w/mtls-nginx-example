@@ -16,7 +16,7 @@
    
    单向认证流程：
    
-   [单向认证流程](./image/browser-1-way.png)
+   ![单向认证流程](./image/browser-1-way.png)
    
 1). 客户端发起建立HTTPS连接请求，将SSL协议版本的信息发送给服务器端；
 
@@ -32,7 +32,7 @@
 
 
    双向认证流程
-   [双向认证流程](./image/browser-2-way.png)
+   ![双向认证流程](./image/browser-2-way.png)
 
 1). 客户端发起建立HTTPS连接请求，将SSL协议版本的信息发送给服务端；
 
