@@ -1,0 +1,18 @@
+FROM nginx:mainline-alpine
+
+# setup nginx
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+
+RUN mkdir -p /etc/nginx/ssl/certs
+COPY ./certs/middle_nginx1_server.crt /etc/nginx/ssl/certs/server.crt
+COPY ./certs/middle_nginx1_server.key /etc/nginx/ssl/certs/server.key
+
+RUN mkdir -p /etc/nginx/ssl/trust
+COPY ./certs/ca.crt /etc/nginx/ssl/trust/ca.crt
+
+
+# setup site
+RUN mkdir -p /etc/nginx/sites-enabled
+COPY nginx/site_middle.conf /etc/nginx/sites-available/default
+RUN ln -f -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+

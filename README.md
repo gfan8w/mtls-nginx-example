@@ -1,5 +1,7 @@
 # Example of mTLS with NGINX
 
+# [2-way Nginx python SSL](./2way-ssl-nginx-python/README.md)
+
 This example is to introduce you to the world of mutual authentication. This tutorial walks you through the steps of configuring two-way security using a NGINX server and connect a website. Therefore, I assume you have some familiarity with the above technologies as well as using Bash and Docker.
 ```
                client.crt     middle.crt  backend.crt

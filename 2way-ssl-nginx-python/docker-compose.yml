@@ -1,0 +1,22 @@
+services:
+  api.python.ddl.com:
+    build:
+      context: .
+      dockerfile: Dockerfile-python-api
+    ports:
+      - '8000:80'
+
+  backend.nginx2.ddl.com:
+    build:
+      context: .
+      dockerfile: Dockerfile-backend
+    ports:
+      - '444:443'
+
+  middle.nginx1.ddl.com:
+    build:
+      context: .
+      dockerfile: Dockerfile-middle
+    ports:
+    - '443:443'
+    - '80:80'

@@ -1,0 +1,35 @@
+FROM ubuntu:20.04 AS python2wayssl_base
+
+LABEL maintainer="A python backend SSL enabled API server"
+
+### bootstrap Ubuntu
+# update ubuntu
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y less vim sudo systemd traceroute wget libssl-dev locales python3-pip tcpdump
+
+# add locale
+RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+    locale-gen && \
+    update-locale LANG=en_US.UTF-8 && \
+    update-locale LC_ALL=en_US.UTF-8 && \
+    update-locale LC_CTYPE=en_US.UTF-8
+
+
+
+FROM python2wayssl_base:latest AS py2wayssl
+
+### setup and install API client app
+RUN mkdir -p /mnt/app/demoapiclient
+RUN mkdir -p /mnt/transient/log/app
+
+ADD ./client/setup.py /mnt/app/demoapiclient
+ADD ./client/requirements.txt /mnt/app/demoapiclient
+ADD ./client/demoapiclient /mnt/app/demoapiclient/demoapiclient
+ADD ./client/bin /mnt/app/demoapiclient/bin
+
+# install
+WORKDIR /mnt/app/demoapiclient
+RUN python3 setup.py install
+
+
